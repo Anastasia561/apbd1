@@ -19,7 +19,7 @@ public class RefrigeratedContainer : Container
         { "Eggs", 19 }
     };
 
-    public RefrigeratedContainer(int height, int depth, int weight, int maxPayload,
+    public RefrigeratedContainer(double height, double depth, double weight, double maxPayload,
         double temperature, string productType)
         : base(height, depth, weight, maxPayload)
     {
@@ -41,5 +41,10 @@ public class RefrigeratedContainer : Container
     public override void EmptyCargo()
     {
         Console.WriteLine($"Cargo emptied ({ProductType})");
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() + $"Product type: {ProductType} atm, Temperature: {Temperature}";
     }
 }

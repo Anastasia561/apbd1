@@ -5,7 +5,8 @@ public class GasContainer : Container, IHazardNotifier
     public int Pressure { get; set; }
     public bool IsHazardous { get; set; }
 
-    public GasContainer(int height, int depth, int weight, int maxPayload, bool isHazardous, int pressure)
+    public GasContainer(double height, double depth, double weight, double maxPayload,
+        bool isHazardous, int pressure)
         : base(height, depth, weight, maxPayload)
     {
         IsHazardous = isHazardous;
@@ -39,5 +40,10 @@ public class GasContainer : Container, IHazardNotifier
     public void SendNotification(string notification)
     {
         Console.WriteLine($"Notification for {SerialNumber}: {notification}");
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() + $"Pressure: {Pressure} atm, IsHazardous: {IsHazardous}";
     }
 }

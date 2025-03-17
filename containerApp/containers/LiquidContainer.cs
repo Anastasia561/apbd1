@@ -4,7 +4,7 @@ public class LiquidContainer : Container, IHazardNotifier
 {
     public bool IsHazardous { get; set; }
 
-    public LiquidContainer(int height, int depth, int weight, int maxPayload, bool isHazardous)
+    public LiquidContainer(double height, double depth, double weight, double maxPayload, bool isHazardous)
         : base(height, depth, weight, maxPayload)
     {
         IsHazardous = isHazardous;
@@ -37,5 +37,10 @@ public class LiquidContainer : Container, IHazardNotifier
     public void SendNotification(string notification)
     {
         Console.WriteLine($"Notification for {SerialNumber}: {notification}");
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() + $"IsHazardous: {IsHazardous}";
     }
 }
