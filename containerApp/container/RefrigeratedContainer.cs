@@ -45,6 +45,6 @@ public class RefrigeratedContainer : Container
 
     public override string ToString()
     {
-        return base.ToString() + $"Product type: {ProductType} atm, Temperature: {Temperature}";
+        return base.ToString() + $", Product type: {ProductType}, Temperature: {Temperature}";
     }
 }

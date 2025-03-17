@@ -41,6 +41,6 @@ public class LiquidContainer : Container, IHazardNotifier
 
     public override string ToString()
     {
-        return base.ToString() + $"IsHazardous: {IsHazardous}";
+        return base.ToString() + $", IsHazardous: {IsHazardous}";
     }
 }

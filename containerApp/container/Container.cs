@@ -5,11 +5,11 @@ namespace containerApp;
 public abstract class Container(double height, double depth, double weight, double maxPayload)
 {
     public double CargoWeight { get; set; }
-    public double Height { get; set; }
-    public double Depth { get; set; }
-    public double TareWeight { get; set; }
+    public double Height { get; set; } = height;
+    public double Depth { get; set; } = depth;
+    public double TareWeight { get; set; } = weight;
     public string SerialNumber { get; set; }
-    public double MaxPayload { get; set; }
+    public double MaxPayload { get; set; } = maxPayload;
 
     public abstract void EmptyCargo();
 

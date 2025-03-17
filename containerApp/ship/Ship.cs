@@ -1,11 +1,12 @@
 ﻿namespace containerApp.ship;
 
-public class Ship(int speed, int maxContainerCount, int maxPayload)
+public class Ship(string name, double speed, int maxContainerCount, double maxPayload)
 {
-    public List<Container> Containers { get; set; }
-    public int Speed { get; set; }
-    public int MaxContainerCount { get; set; }
-    public int MaxPayload { get; set; }
+    public List<Container> Containers = new List<Container>();
+    public string Name { get; set; } = name;
+    public double Speed { get; set; } = speed;
+    public int MaxContainerCount { get; set; } = maxContainerCount;
+    public double MaxPayload { get; set; } = maxPayload;
 
     private double _actualPayload = 0;
 
@@ -37,10 +38,11 @@ public class Ship(int speed, int maxContainerCount, int maxPayload)
         }
     }
 
-    public void UnloadContainer(Container container)
+    public void UnloadContainer(string number)
     {
         if (Containers.Count > 0)
         {
+            var container = Containers.Find(c => c.SerialNumber == number);
             Containers.Remove(container);
         }
         else
@@ -52,26 +54,31 @@ public class Ship(int speed, int maxContainerCount, int maxPayload)
     public void ReplaceContainerByNumber(string number, Container containerToReplace)
     {
         var container = Containers.Find(c => c.SerialNumber == number);
-        UnloadContainer(container);
-        LoadContainer(container);
+        UnloadContainer(number);
+        LoadContainer(containerToReplace);
     }
 
     public void TransferToAnotherShip(Container containerToTransfer, Ship shipToTransfer)
     {
-        UnloadContainer(containerToTransfer);
+        UnloadContainer(containerToTransfer.SerialNumber);
         shipToTransfer.LoadContainer(containerToTransfer);
     }
 
     public override string ToString()
     {
-        var info = $"Ship info: Speed: {Speed}," +
-                   $" Max number of containers: {MaxContainerCount}, Max payload: {MaxPayload}" +
-                   "Cargo info: ";
-        foreach (var container in Containers)
-        {
-            info += container.ToString();
-        }
+        return $"Ship info: Name: {Name}, Speed: {Speed}," +
+               $" Max number of containers: {MaxContainerCount}, Max payload: {MaxPayload}";
+    }
 
-        return info;
+    public void PrintCargoInfo()
+    {
+        if (Containers.Count > 0)
+        {
+            Console.WriteLine($"Cargo info of ship '{Name}': ");
+            foreach (var container in Containers)
+            {
+                Console.WriteLine(container.ToString());
+            }
+        }
     }
 }
