@@ -1,20 +1,22 @@
 ﻿namespace containerApp;
 
-public class LiquidContainer : Container, IHazardNotifier
+public class GasContainer : Container, IHazardNotifier
 {
+    public int Pressure { get; set; }
     public bool IsHazardous { get; set; }
 
-    public LiquidContainer(int height, int depth, int weight, int maxPayload, bool isHazardous)
+    public GasContainer(int height, int depth, int weight, int maxPayload, bool isHazardous, int pressure)
         : base(height, depth, weight, maxPayload)
     {
         IsHazardous = isHazardous;
-        SerialNumber = "KON-L-" + GenerateSerialNumber();
+        Pressure = pressure;
+        SerialNumber = "KON-G-" + GenerateSerialNumber();
     }
 
     public override void EmptyCargo()
     {
-        Console.WriteLine("Cargo emptied (liquid)");
-        CargoWeight = 0;
+        Console.WriteLine("Cargo emptied (gas)");
+        CargoWeight *= 0.05;
     }
 
     public override void LoadWithCargo(int cargoWeight)
