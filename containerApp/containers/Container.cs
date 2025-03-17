@@ -2,12 +2,12 @@
 
 namespace containerApp;
 
-public abstract class Container(int cargoWeight, int height, int depth, int weight, int maxPayload)
+public abstract class Container(int height, int depth, int weight, int maxPayload)
 {
-    public int CargoWeight { get; set; }
-    public int Height { get; set; }
-    public int Depth { get; set; }
-    public int Weight { get; set; }
+    public double CargoWeight { get; set; }
+    public double Height { get; set; }
+    public double Depth { get; set; }
+    public double TareWeight { get; set; }
     public string SerialNumber { get; set; }
     public int MaxPayload { get; set; }
 
@@ -19,9 +19,9 @@ public abstract class Container(int cargoWeight, int height, int depth, int weig
             throw new OverfillException("Weight of cargo to be larger than max payload");
     }
 
-    private int GenerteSerialNumber()
+    protected static int GenerateSerialNumber()
     {
-        Random random = new Random();
+        var random = new Random();
         return random.Next();
     }
 }
